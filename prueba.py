@@ -15,6 +15,22 @@ def descansar(e):
     print(">> Ya estás totalmente descansado.")
     return e
 
+import random 
+
+def encuentro_enemigo(e):    
+    suerte = random.randint(1, 10)
+    
+    if suerte <= 3: 
+        print("\n¡CUIDADO! Un duende salvaje apareció.")
+        opcion = input("¿Pelear o Escapar? (p/e): ").lower()
+        
+        if opcion == "p":
+            print("¡Le diste una patada! Pero te cansaste mucho.")
+            return e - 2
+        else:
+            print("Escapaste por poco...")
+            return e - 1
+    return e
 
 energia = 3
 
@@ -23,6 +39,7 @@ while energia > 0:
     accion = input("¿Qué quieres hacer? (caminar/descansar/salir): ").lower()
     
     if accion == "caminar":
+        energia = encuentro_enemigo(energia)
         energia = caminar(energia)
     elif accion == "descansar":
         energia = descansar(energia)
